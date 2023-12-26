@@ -3,41 +3,6 @@ import json
 import requests
 from bs4 import BeautifulSoup, NavigableString, Tag
 
-
-# def setup_file(filename, is_append):
-#     if is_append:
-#         mod = "a+"
-#         bra = ']'
-#     else:
-#         mod = "w"
-#         bra = '['
-#     with open(filename, mod) as f:
-#         f.writelines(bra)
-#
-
-def write_file(filename, data, deli):
-    with open(filename, "a+") as f:
-        f.writelines(deli)
-        json.dump(data, f, indent=2, ensure_ascii=False)
-
-
-def add_contents(contents, data):
-    for header in contents.find_all('h3'):
-        nextNode = header
-        while True:
-            nextNode = nextNode.nextSibling
-            if nextNode is None:
-                break
-            if isinstance(nextNode, NavigableString):
-                # print (nextNode.strip())
-                pass
-            if isinstance(nextNode, Tag):
-                if nextNode.name == "h3":
-                    break
-                # print (nextNode.get_text(strip=True).strip())
-                data[header.text] = nextNode.get_text(strip=True).strip()
-
-
 def get_list_link(start, end):
     links = []
     for i in range(start, end + 1):
@@ -69,28 +34,6 @@ def get_links_company(titles):
     return links_company
 
 
-def job_address(job_url):
-    try:
-        response = requests.get(f"https://www.careerlink.vn{job_url}")
-        response.raise_for_status()
-        soup = BeautifulSoup(response.content, "html.parser")
-        location_span = soup.find('span', class_="mr-1")
-        if location_span:
-            # Sử dụng find_next_sibling để lấy thẻ <a> kế tiếp
-            location_a = location_span.find_next_sibling('a')
-
-            # Kiểm tra xem location_a có tồn tại không và lấy nội dung của cả thẻ <span> và <a>
-            if location_a:
-                location = f"{location_span.text.strip()}, {location_a.text.strip()}"
-                location = location.replace(",,", ",")
-                return location
-        else:
-            location = "Nhật Bản"
-            return location
-
-    except requests.exceptions.RequestException as e:
-        print(f"Error during request: {e}")
-
 
 def crawl_contents(filename, links_company):
 
@@ -106,19 +49,21 @@ def crawl_contents(filename, links_company):
         names_obj = soup.find('h1', class_="job-title mb-0")
         if names_obj == None:
             continue
-        names = names_obj.text
-        data['name'] = names
+        job_names = names_obj.text
+        data['tên công việc'] = job_names
+
+        company_name = soup.find('p', class_="org-name mb-2")
+        data['tên công ty'] = company_name.get_text()
 
         data["Địa điểm công việc"] = []
-
         tmp_data = soup.find("div", class_="d-flex align-items-start mb-2")
         huyen = tmp_data.find('span', class_='mr-1')
         tinh = tmp_data.find('a', class_='text-reset')
         if huyen is None:
             data["Địa điểm công việc"].append(None)
         else:
-            data["Địa điểm công việc"].append(huyen.get_text())
-        data['Địa điểm công việc'].append(tinh.get_text())
+            data["Địa điểm công việc"].append(huyen.get_text().replace("\n",""))
+        data['Địa điểm công việc'].append(tinh.get_text().replace("\n",""))
 
         tmp_data = soup.find_all("div", class_="d-flex align-items-center mb-2")
         luong = tmp_data[0].find('span', class_='text-primary')
@@ -167,6 +112,12 @@ def crawl_contents(filename, links_company):
             elif 'Tuổi' in label.get_text():
                 tuoi = label.find_next_sibling('div').get_text()
                 data['tuổi'] =tuoi
+            elif 'Ngành nghề' in label.get_text():
+                nganh_nghe = label.find_next_sibling('div').get_text()
+                data['ngành nghề'] = nganh_nghe
+        for title, value in data.items():
+            if "\n" in value:
+                data[title]= value.replace("\n", "")
 
         job_info.append(data)
 
