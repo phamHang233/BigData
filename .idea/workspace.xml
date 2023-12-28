@@ -5,34 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd256c8e-82fe-4fd7-8ba7-dafae2668c04" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/datasource/recruit_1_2.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/8/182dff5fe54bdf1bf6484e18654c8dfac97dc2ca" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/8/182dff5fe54bdf1bf6484e18654c8dfac97dc2ca" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/8/487d735299b8ad959b908cc2f2a6df677ff0fe4d" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/8/487d735299b8ad959b908cc2f2a6df677ff0fe4d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/2/52e9cac569cc5840b8e0d20740d4105c52253d7d" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/5/2/52e9cac569cc5840b8e0d20740d4105c52253d7d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/6/765fd49cb5d706b356199b8b1126d3eed41f4a79" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/6/765fd49cb5d706b356199b8b1126d3eed41f4a79" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/3/936186627f1466d45021796fa05576989665d700" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/9/3/936186627f1466d45021796fa05576989665d700" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/b/fb6d4994f89d42e07ed28741919d6a3a68b32773" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/f/b/fb6d4994f89d42e07ed28741919d6a3a68b32773" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sonarlint/securityhotspotstore/index.pb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datasource/crawler.py" beforeDir="false" afterPath="$PROJECT_DIR$/datasource/crawler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datasource/crawler_multithread.py" beforeDir="false" afterPath="$PROJECT_DIR$/datasource/crawler_multithread.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datasource/result/recruit_10_12.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasource/result/recruit_10_12.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datasource/result/recruit_13_15.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasource/result/recruit_13_15.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datasource/result/recruit_16_18.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasource/result/recruit_16_18.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasource/result/recruit_1_2.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/datasource/result/recruit_1_3.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasource/result/recruit_1_3.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datasource/result/recruit_4_6.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasource/result/recruit_4_6.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datasource/result/recruit_7_9.json" beforeDir="false" afterPath="$PROJECT_DIR$/datasource/result/recruit_7_9.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasource/run_crawler.sh" beforeDir="false" afterPath="$PROJECT_DIR$/datasource/run_crawler.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/datasource/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/datasource/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/patterns.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/patterns.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/queries.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/queries.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/udfs.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/udfs.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/node01/current/VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/node01/current/VERSION" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/node01/current/edits_inprogress_0000000000000001886" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/node01/current/fsimage_0000000000000001541" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/node01/current/fsimage_0000000000000001541.md5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/node01/current/fsimage_0000000000000001885" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/data/node01/current/fsimage_0000000000000001885.md5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/node01/current/edits_inprogress_0000000000000002309" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/node01/current/fsimage_0000000000000002306" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/node01/current/fsimage_0000000000000002306.md5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/node01/current/fsimage_0000000000000002307" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/node01/current/fsimage_0000000000000002307.md5" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/data/node01/current/seen_txid" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/node01/current/seen_txid" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/data/node01/in_use.lock" beforeDir="false" afterPath="$PROJECT_DIR$/src/data/node01/in_use.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,27 +56,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.crawler.executor&quot;: &quot;Run&quot;,
-    &quot;Python.crawler_multithread.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Shell Script.run_crawler.sh.executor&quot;: &quot;Debug&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/hang/PycharmProjects/BigData&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.crawler.executor": "Run",
+    "Python.crawler_multithread.executor": "Run",
+    "Python.test.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Shell Script.run_crawler.sh.executor": "Run",
+    "last_opened_file_path": "/home/hang/PycharmProjects/BigData"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/spark_app" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/datasource" />
       <recent name="$PROJECT_DIR$/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.crawler">
+  <component name="RunManager" selected="Shell Script.run_crawler.sh">
     <configuration name="crawler" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="BigData" />
       <option name="ENV_FILES" value="" />
@@ -163,10 +167,10 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.crawler" />
-        <item itemvalue="Python.crawler_multithread" />
         <item itemvalue="Shell Script.run_crawler.sh" />
+        <item itemvalue="Python.crawler_multithread" />
         <item itemvalue="Python.test" />
+        <item itemvalue="Python.crawler" />
       </list>
     </recent_temporary>
   </component>
@@ -193,17 +197,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/datasource/test.py</url>
-          <line>8</line>
+          <line>10</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/datasource/crawler.py</url>
-          <line>121</line>
+          <line>115</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/datasource/crawler_multithread.py</url>
-          <line>128</line>
+          <line>123</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

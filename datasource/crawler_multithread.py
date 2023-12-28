@@ -35,15 +35,10 @@ def crawl_content(link):
 
     company_name = soup.find('p', class_="org-name mb-2")
     data['tên công ty'] = company_name.get_text()
-    data["Địa điểm công việc"] = []
+
     tmp_data = soup.find("div", class_="d-flex align-items-start mb-2")
-    huyen = tmp_data.find('span', class_='mr-1')
-    tinh = tmp_data.find('a', class_='text-reset')
-    if huyen is None:
-        data["Địa điểm công việc"].append(None)
-    else:
-        data["Địa điểm công việc"].append(huyen.get_text().replace("\n", ""))
-    data['Địa điểm công việc'].append(tinh.get_text().replace("\n", ""))
+    tmp_data = tmp_data.get_text()
+    data['Địa điểm công việc'] = ' '.join(tmp_data.split())
 
     tmp_data = soup.find_all("div", class_="d-flex align-items-center mb-2")
     luong = tmp_data[0].find('span', class_='text-primary')

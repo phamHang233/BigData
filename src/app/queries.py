@@ -1,4 +1,4 @@
-from pyspark.sql.functions import explode
+from pyspark.sql.functions import explode, col, size
 from app import udfs
 
 
@@ -29,8 +29,13 @@ def get_grouped_knowledge(knowledge_df, mapped_knowledge):
         mapped_knowledge= mapped_knowledge.value['Knowledge']
     except:
         return None
-    return knowledge_df.withColumn('Category', udfs.labeling_knowledge('Knowledge', mapped_knowledge))\
+
+    value = mapped_knowledge.value['Knowledge']
+    return knowledge_df.withColumn('Category', value)\
           .groupBy('Category').sum("count").filter("Category!='null'")
 
-def get_count_experience(extracted_recruit_df):
-    extracted_recruit_df.withColumn()
+def get_count_job_type(extracted_recruit_df):
+    return extracted_recruit_df.withColumn('HardOrSoftWare', udfs.extract_job_type("JobSummary")).groupBy('HardOrSoftWare').sum('count').filter("HardOrSoftWare!='null'")
+
+def get_not_null_salary(extracted_recruit_df):
+    return  extracted_recruit_df.filter(size(col("Salaries")) > 0)

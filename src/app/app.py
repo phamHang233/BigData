@@ -41,11 +41,11 @@ if __name__ == "__main__":
         "hdfs://node01:8020/datasource/*.json")
     extracted_recruit_df = raw_recruit_df.select(raw_recruit_df["tên công việc"].alias("JobName"),
                                                  raw_recruit_df['tên công ty'].alias("CompanyName"),
-                                                 raw_recruit_df["Địa điểm công việc"].alias("Location"),
+                                                 udfs.extract_location("Địa điểm công việc").alias("Location"),
                                                  udfs.extract_exp_pattern('Kinh nghiệm').alias("Experience"),
                                                  raw_recruit_df['loại công việc'].alias("JobType"),
                                                  raw_recruit_df["cấp bậc"].alias('Level'),
-                                                 raw_recruit_df["học vấn"].alias('Education'),
+                                                 udfs.extract_education("học vấn", "kĩ năng yêu cầu").alias('Education'),
                                                  raw_recruit_df["giới tính"].alias('Sex'),
                                                  udfs.extract_old_pattern("tuổi").alias("Old"),
                                                  udfs.extract_framework_plattform("mô tả công việc",
@@ -58,14 +58,16 @@ if __name__ == "__main__":
                                                                              "kĩ năng yêu cầu").alias("DesignPatterns"),
                                                  udfs.extract_knowledge("mô tả công việc", "kĩ năng yêu cầu").alias(
                                                      "Knowledges"),
-                                                 # udfs.normalize_salary("Mức lương").alias("Salaries"),
+                                                 udfs.normalize_salary("Mức lương").alias("Salaries"),
                                                  raw_recruit_df['thông tin liên hệ'].alias("Contact"),
-                                                 raw_recruit_df["ngành nghề"].alias("JobSummary")
-
-                                                 )
+                                                udfs.extract_job_type("ngành nghề").alias("JobSummary"),
+                                                 ).withColumn('Knowledge', udfs.get_grouped_knowledge("Knowledges"))
     print('extract successuly!!!!')
     extracted_recruit_df.cache()
-    extracted_recruit_df.show(15)
+    extracted_recruit_df.show(5)
+
+    salaries_not_null= queries.get_not_null_salary(extracted_recruit_df)
+    salaries_not_null.show(5)
 
     # ##========save extracted_recruit_df to hdfs========================
     df_to_hdfs = (extracted_recruit_df,)
@@ -79,11 +81,10 @@ if __name__ == "__main__":
     # knowledge_df = queries.get_counted_knowledge(extracted_recruit_df)
     # knowledge_df.cache()
     # knowledge_df.show(5)
-    # mapped_knowledge = sc.broadcast( patterns.labeled_knowledges)
+
     # udfs.broadcast_labeled_knowledges(sc, patterns.labeled_knowledges)
-    # grouped_knowledge_df = queries.get_grouped_knowledge(knowledge_df,mapped_knowledge)
-    # grouped_knowledge_df.cache()
-    # grouped_knowledge_df.show()
+    # grouped_knowledge_df =
+    # grouped_knowledge_df.show(10)
 
     # extracted_recruit_df = extracted_recruit_df.drop("Knowledges")
     # extracted_recruit_df.cache()
@@ -91,15 +92,14 @@ if __name__ == "__main__":
     ##========save some df to elasticsearch========================
     df_to_elasticsearch = (
         extracted_recruit_df,
-        # knowledge_df,
+        salaries_not_null
         # grouped_knowledge_df
     )
 
     df_es_indices = (
         "recruit",
-        # "knowledges",
+        'salaries'
         # "grouped_knowledges"
     )
-    extracted_recruit_df.show(5)
-    # io_cluster.save_dataframes_to_elasticsearch(df_to_elasticsearch, df_es_indices, app_config.get_elasticsearch_conf())
+    # extracted_recruit_df.show(5)
     io_cluster.save_df_to_elastic(df_to_elasticsearch, df_es_indices, app_config)

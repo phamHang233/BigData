@@ -26,9 +26,9 @@ def extract_IT_language(mo_ta_cong_viec, yeu_cau_ung_vien):
 @udf(returnType=ArrayType(StringType()))
 def extract_language(yeu_cau_ung_vien):
     languages=[]
-    for language in patterns.languages:
+    for language, normalize_language in patterns.languages.items():
         if re.search(language, yeu_cau_ung_vien, re.IGNORECASE):
-            languages.append(language)
+            languages.append(normalize_language)
     return languages
 
 
@@ -255,3 +255,37 @@ def normalize_salary(quyen_loi):
         bin_set = range_to_bin_list(int(bin_set[0]), int(bin_set[1]))
 
     return bin_set
+
+
+@udf(returnType=StringType())
+def extract_location(dia_diem_cong_viec):
+    for province in patterns.provinces:
+        if re.search(province, dia_diem_cong_viec, re.IGNORECASE):
+            return province
+    return None
+    # return len(dia_diem_cong_viec)
+
+@udf(returnType=ArrayType(StringType()))
+def extract_job_type(nganh_nghe):
+    job_type =[]
+    if re.search('CNTT - Phần mềm', nganh_nghe, re.IGNORECASE):
+        job_type.append('software')
+    if re.search('CNTT - Phần cứng / Mạng', nganh_nghe, re.IGNORECASE):
+        job_type.append('hardware')
+    return job_type
+
+
+@udf(returnType=StringType())
+def get_grouped_knowledge(knowledge):
+    for x in knowledge:
+        res = patterns.labeled_knowledges.get(x)
+        if res is not None:
+            return res
+
+@udf(returnType=ArrayType(StringType()))
+def extract_education(hoc_van, ki_nang_yeu_cau):
+    res=[]
+    for edu in patterns.educations:
+        if re.search(edu, hoc_van+ " "+ki_nang_yeu_cau, re.IGNORECASE):
+            res.append(edu)
+    return res
