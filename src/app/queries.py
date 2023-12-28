@@ -31,3 +31,6 @@ def get_grouped_knowledge(knowledge_df, mapped_knowledge):
         return None
     return knowledge_df.withColumn('Category', udfs.labeling_knowledge('Knowledge', mapped_knowledge))\
           .groupBy('Category').sum("count").filter("Category!='null'")
+
+def get_count_experience(extracted_recruit_df):
+    extracted_recruit_df.withColumn()

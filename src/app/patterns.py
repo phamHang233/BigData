@@ -15,7 +15,7 @@ knowledges = ['game', 'Jira', 'lắp đặt', 'interaction design', 'đồ họa
                'kiểm thử', 'đánh giá chất lượng', 'networking', 'distributed system', 'UI/UX', 'Windows', 'Unit Test',
                'Jenkins', 'Chatbot', 'quản trị mạng', 'Solidity', 'tester', 'Corel Draw', 'Illustrator', 'Git', 'Android',
                'Black Box', 'Office', 'chạy quảng cáo', 'Unix', 'IT Support', 'Data mining', 'data analys','Cài đặt','hệ điều hành', 'cấu trúc dữ liệu', 'Switch',
-               ' TCP', 'qa', 'Animate', 'crypto', 'CI/CD', 'Defi', 'frontend', 'sửa chữa','Kinh tế', 'SVN', 'phần cứng', ' sync','BrSE',
+               ' TCP', 'qa', 'Animate', 'crypto', 'CI/CD', 'Defi', 'frontend', 'sửa chữa','Kinh tế', 'SVN', 'phần cứng', ' sync','BrSE', 'bảo mật',
                'Powerpoint', 'smart contract', 'Linux', 'SCM', 'backend', 'Marketing', 'XSS', 'Photoshop', 'HTTP', 'Word', 'router', 'IOS',
                'WebSocket', 'thuật toán', 'TestRail', 'CSDL', 'Sketch', 'blockchains', 'multithreading', 'hướng đối tượng', 'Front-end',
                'latex', 'Restful', 'Subversion', 'java web', 'Mobile', 'Excel']
@@ -55,6 +55,5 @@ IT_languages = [' CHAIN ', ' ABAP ', 'Lingo', ' CPL', 'NPL', 'Xtend', ' Flex ', 
              ' CFEngine', 'C#', 'SPS']
 languages= ['Tiếng Anh',  'Tiếng Nhật', 'Japan', 'English', 'tiếng trung',  ]
 salary_patterns = ["lương(?:từ| )+ ((?:\d+|\.)+)", "((?:\d+|\.|-| )+(?:triệu| )+)đồng",
-                   "(?:\d|\.|,)+.000.000", "(?:\d+| |-)+\d+ *(?:triệu|m)", "\$(?:\d+|\.)", "(?:\d+|\.)+ *(?:USD|\$)+",
+                   "(?:\d|\.|,)+.000.000", "(?:\d+| |-)+\d+ *(?:triệu|m)", "\$(?:\d+|,)", "(?:\d+|,)+ *(?:USD|\$)+",
                    "(?:\d|\.|,)+,000,000"]
-

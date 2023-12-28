@@ -1,5 +1,7 @@
 import argparse
 import json
+import time
+
 import requests
 from bs4 import BeautifulSoup, NavigableString, Tag
 
@@ -133,6 +135,7 @@ if __name__ == "__main__":
     parser.add_argument("start")
     parser.add_argument("end")
     args = parser.parse_args()
+    start_time = time.time()
 
     print("Start crawling from ", args.start, " to ", args.end)
     # data = read_data(args.data_file_name)
@@ -142,3 +145,4 @@ if __name__ == "__main__":
     links_company = get_links_company(title)
     filename =f"result/recruit_{args.start}_{args.end}.json"
     crawl_contents(filename, links_company)
+    print(f'Crawler succesfully in {time.time()- start_time}')

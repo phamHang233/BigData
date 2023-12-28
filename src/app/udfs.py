@@ -50,38 +50,45 @@ def extract_design_pattern(mo_ta_cong_viec, yeu_cau_ung_vien):
             design_patterns.append(design_pattern)
     return design_patterns
 
+
+
 @udf(returnType=ArrayType(IntegerType()))
 def extract_exp_pattern(kinh_nghiem):
     # lấy ra tất cả các số nguyên <-> số năm kinh nghiệm
     exp = re.findall(r'\b\d+\b', kinh_nghiem)
-    return [int(number) for number in exp] if exp else []
+    exp_range = [int(number) for number in exp]
+    if len(exp_range) == 2:
+        end= exp_range[1]
+        start = exp_range[0]
+        if end >= 10:
+            end = 10
+
+        start = int(start / 1)
+        end = int(end / 1)
+
+        exp_range= [1 * i for i in range(start, end + 1)]
+
+    return exp_range
+
 
 @udf(returnType=ArrayType(IntegerType()))
 def extract_old_pattern(tuoi):
     if tuoi is not None:
         old = re.findall(r'\b\d+\b', tuoi)
-        return [int(number) for number in old] if old else []
+        old_range = [int(number) for number in old]
+        if len(old_range) == 2:
+            end = old_range[1]
+            start = old_range[0]
+            if end >= 45:
+                end = 45
+
+            start = int(start / 5)
+            end = int(end / 5)
+
+            old_range = [5 * i for i in range(start, end + 1)]
+        return old_range
     else:
         return []
-
-# @udf(returnType=ArrayType(StringType()))
-
-# def broadcast_labeled_knowledges(sc, labeled_knowledges):
-#     '''
-#     broadcast the mapped of labeled_knowledges to group data in knowledge field
-#     '''
-
-
-
-@udf(returnType=StringType())
-def labeling_knowledge(knowledge, mapped_knowledge):
-    try:
-        return mapped_knowledge.value[knowledge]
-    except:
-        return None
-
-
-
 
 @udf(returnType=ArrayType(IntegerType()))
 def normalize_salary(quyen_loi):
@@ -96,6 +103,7 @@ def normalize_salary(quyen_loi):
         quyen_loi : quyen_loi field in raw data
         '''
         salaries = []
+        # salaries= quyen_loi.split()
         for pattern in patterns.salary_patterns:
             salaries.extend(re.findall(pattern, unicodedata.normalize('NFKC', quyen_loi), re.IGNORECASE))
         return salaries
@@ -123,10 +131,12 @@ def normalize_salary(quyen_loi):
         start : the start of salary range
         end : the end of salary range
         '''
+        if end >= 100:
+            end = 100
+
         start = int(start / BIN_SIZE)
         end = int(end / BIN_SIZE)
-        if end >= int(100 / BIN_SIZE):
-            end = int(100 / BIN_SIZE)
+
         return [BIN_SIZE * i for i in range(start, end + 1)]
 
     def dollar_to_vnd(dollar):
@@ -137,7 +147,7 @@ def normalize_salary(quyen_loi):
         ----------
         dollar : salary value in dollar unit
         '''
-        return sal_to_bin_list(math.floor(dollar * 23 / 1000))
+        return sal_to_bin_list(math.floor(dollar * 24 / 1000))
 
     def dollar_handle(currency):
         '''
@@ -161,7 +171,7 @@ def normalize_salary(quyen_loi):
             ext_curr = currency[1:]
         else:
             ext_curr = currency[:-1]
-        ext_curr = ext_curr.replace(".", "")
+        ext_curr = ext_curr.replace(",", "")
         try:
             val_curr = int(ext_curr)
             return dollar_to_vnd(val_curr)
@@ -194,7 +204,7 @@ def normalize_salary(quyen_loi):
         Handle currency, returns the salary bins
         The currency must be preprocessed and returned None by dollar_handle()
         The currency must be stripped and splitted by "-" to become a list
-        
+
         Parameters
         ----------
         ori_range_list : the range of salary (a list containing at most 2 element)
@@ -209,10 +219,12 @@ def normalize_salary(quyen_loi):
                 end = normalize_vnd(ori_range_list[1])
                 if end != None:
                     return range_to_bin_list(start, end)
+
                 else:
                     print("Error converting end ", ori_range_list[1], " with start ", ori_range_list[0])
             except ValueError:
                 print("Error Converting Start ", ori_range_list[0], " with end ", ori_range_list[1])
+            return None
         # return [0]*11
         return None
 
@@ -237,4 +249,9 @@ def normalize_salary(quyen_loi):
         sal_bins = salary_handle(sal)
         if sal_bins != None and sal_bins != []:
             bin_set = bin_set.union(tuple(sal_bins))
-    return sorted(list(bin_set))
+    bin_set = sorted(list(bin_set))
+
+    if len(bin_set) == 2:
+        bin_set = range_to_bin_list(int(bin_set[0]), int(bin_set[1]))
+
+    return bin_set

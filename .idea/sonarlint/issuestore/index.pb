@@ -39,3 +39,9 @@ B
 src/app/queries.py,5/2/52e9cac569cc5840b8e0d20740d4105c52253d7d
 =
 src/submit.sh,6/9/69d672ced3cfc81e15cb675d7e1ef8d7dabd55ef
+T
+$datasource/result/recruit_13_15.json,d/b/db40957cc939e4e75e39c0382f4e227db4a8772d
+T
+$datasource/result/recruit_16_18.json,b/1/b10be23eced5e0c2d4fffe665dc8f0eff67ed627
+R
+"datasource/result/recruit_1_2.json,0/c/0c91342e4c516029a994f3207f66188f96196f98

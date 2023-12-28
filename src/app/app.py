@@ -23,6 +23,7 @@ schema = StructType([
     StructField("ngành nghề", StringType(), True),
 ])
 
+
 if __name__ == "__main__":
     APP_NAME = "PreprocessData"
 
@@ -57,18 +58,22 @@ if __name__ == "__main__":
                                                                              "kĩ năng yêu cầu").alias("DesignPatterns"),
                                                  udfs.extract_knowledge("mô tả công việc", "kĩ năng yêu cầu").alias(
                                                      "Knowledges"),
-                                                 udfs.normalize_salary("Mức lương").alias("Salaries"),
+                                                 # udfs.normalize_salary("Mức lương").alias("Salaries"),
                                                  raw_recruit_df['thông tin liên hệ'].alias("Contact"),
                                                  raw_recruit_df["ngành nghề"].alias("JobSummary")
 
                                                  )
     print('extract successuly!!!!')
     extracted_recruit_df.cache()
+    extracted_recruit_df.show(15)
 
     # ##========save extracted_recruit_df to hdfs========================
     df_to_hdfs = (extracted_recruit_df,)
     df_hdfs_name = ("extracted_recruit",)
     io_cluster.save_dataframes_to_hdfs("/extracted_data", app_config, df_to_hdfs, df_hdfs_name)
+
+
+
 
     # ##========make some query==========================================
     # knowledge_df = queries.get_counted_knowledge(extracted_recruit_df)
@@ -83,7 +88,7 @@ if __name__ == "__main__":
     # extracted_recruit_df = extracted_recruit_df.drop("Knowledges")
     # extracted_recruit_df.cache()
 
-    # ##========save some df to elasticsearch========================
+    ##========save some df to elasticsearch========================
     df_to_elasticsearch = (
         extracted_recruit_df,
         # knowledge_df,
